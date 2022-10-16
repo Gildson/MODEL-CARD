@@ -34,15 +34,15 @@ Solução usando KNN
  
 **Stage [Run]**                        | **Accuracy** | **F1** | **Precision** | **Recall** |
 ---------------------------------|--------------|--------|---------------|------------|
-Train [likely-snow-4](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/2ebl5jzc?workspace=user-ivanovitch-silva) | ?      | ? | ?        | ?     | 
-Test [confused-sun-5](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/e8bwl5wq?workspace=user-ivanovitch-silva)  | 0.4533      | 0.4548 | 0.5435        | 0.4533     |
+Train [breezy-dawn-5](https://wandb.ai/gildson/first_image_classifier/runs/3oe8zx9r?workspace=user-gildson) | ?      | ? | ?        | ?     | 
+Test [breezy-dawn-5](https://wandb.ai/gildson/first_image_classifier/runs/3oe8zx9r?workspace=user-gildson)  | 0.452      | 0.4554 | 0.5222        | 0.452     |
  
 Solução usando MLP
  
 **Stage [Run]**                        | **Accuracy** | **F1** | **Precision** | **Recall** |
 ---------------------------------|--------------|--------|---------------|------------|
-Train [likely-snow-4](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/2ebl5jzc?workspace=user-ivanovitch-silva) | ?      | ? | ?        | ?     | 
-Test [confused-sun-5](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/e8bwl5wq?workspace=user-ivanovitch-silva)  | 0.XXXX      | 0.xxxx | 0.xxxx        | 0.Xxxx     |
+Train [helpful-violet-82](https://wandb.ai/gildson/second_image_classifier/runs/365xnfnu?workspace=user-gildson) | ?      | ? | ?        | ?     | 
+Test [helpful-violet-82](https://wandb.ai/gildson/second_image_classifier/runs/365xnfnu?workspace=user-gildson)  | 0.3333      | 0.1667 | 0.7778        | 0.3333     |
  
 ## Ethical Considerations
  
