@@ -1,44 +1,52 @@
 # Model Card
 
-Model cards are a succinct approach for documenting the creation, use, and shortcomings of a model. The idea is to write a documentation such that a non-expert can understand the model card's contents. For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
+Model card é uma explicação sucienta sobre o modelo na forma de um documento, levando a compreender os passos, resultados e ideias geradas durante a etapa de criação.
 
 ## Model Details
-Ivanovitch Silva created the model. A complete data pipeline was built using Google Colab, Scikit-Learn and Weights & Bias to train a KNN model. The big-picture of the data pipeline is shown below:
+O modelo foi criado por Gildson Bezerra e Micael Balza durante a disciplina de Inteligência Artificial Embarcada na UFRN em 2022.2. O pipeline dos dados foi feito usando ferramentas como Google colab, Scikit-Learn and Weights & Bias e a linguagem python para treinar uma MLP para classificar um problema multiclasse. A big-picture do fluxo de dados e etapas é descrita na imagem a seguir:
 
-<img width="800" src="fig/workflow.png">
+<img width="800" src="1.png">
 
 ## Intended Use
-This model is used as a proof of concept for the evaluation of an entire data pipeline incorporating Machine Learning fundamentals. The data pipeline is composed of the following stages: a) ``fecht data``, b) ``preprocess``, c) <s>``check data``</s>, d) ``segregate``, e) ``train`` and f) ``test``.
+Este modelo é composto pelas arquivos:  a) ``fecht data``, b) ``pre-processing``, c) ``data_segregation`` d) ``train`` and e) ``test``, que são os nomes dos arquivos encontrados neste gitHub respectivamente para as etapas de coleta do dataset; limpeza e validação; separação dos dados de treinamento;validação e teste; etapa de treinamento e por fim a etapa de teste. 
 
 ## Training Data
 
-The purpose of this dataset is to correctly classify an image as containing a dog, cat, or panda. Containing only 3,000 images, the Animals dataset is meant to be another **introductory** dataset
-that we can quickly train a KNN model and obtain initial results (no so good accuracy) that has potential to be used as a baseline. 
+A proposta é usando uma rede de MLP classificar as imagens de um dataset com 3000 imagens contendo animais como cachorro, gato e panda. De forma a melhorar a acuracia comparando a solução criada com outra solução implementada usando KNN para o mesmo problema.
 
-After the EDA stage of the data pipeline, it was noted that the images in training data has different resolutions. A pre-processing stage is necessary in order to normalize all images using the same size. 
+Foi nescessário uma etapa de pré-processamento nas imagens pois o dataset continham dados de diferentes resoluções, todas foram convertidas para a mesma resolução(32x32).
 
-<img width="600" src="fig/EDA.png">
 
+
+<img width="600" src="2.png">
+(Imagem retirada de <https://github.com/ivanovitchm/embedded.ai/tree/main/lessons/week_05/first_classifier> em 16/10/2022)
 
 ## Evaluation Data
-The dataset under study is split into Train and Test during the ``Segregate`` stage of the data pipeline. 70% of the clean data is used to Train and the remaining 30% to Test. 
+Durante a etapa de data_segregation o dataset a pré-processado foi dividido parte para treinamento, e parte para teste na proporção de 70% e 30% respectivamente. Realizou-se tambem a transformação dos rotulos categoricos em numericos.
+
 
 ## Metrics
-In order to follow the performance of machine learning experiments, the project marked certains stage outputs of the data pipeline as metrics. The metrics adopted are: [accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html), [f1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score), [precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score), [recall](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score).
+Foram usadas metricas de performace comuns em tecnicas de ML, algumas delas são vistas a seguir e foram usadas como comparativo entre ambas soluções:
 
-To calculate the evaluations metrics is only necessary to run:
+ [accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html), [f1](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score), [precision](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score), [recall](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score).
 
-The follow results will be shown:
+Solução usando KNN
 
  **Stage [Run]**                        | **Accuracy** | **F1** | **Precision** | **Recall** | 
 ---------------------------------|--------------|--------|---------------|------------|
  Train [likely-snow-4](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/2ebl5jzc?workspace=user-ivanovitch-silva) | ?      | ? | ?        | ?     |  
  Test [confused-sun-5](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/e8bwl5wq?workspace=user-ivanovitch-silva)  | 0.4533      | 0.4548 | 0.5435        | 0.4533     |
 
+Solução usando MLP
+
+ **Stage [Run]**                        | **Accuracy** | **F1** | **Precision** | **Recall** | 
+---------------------------------|--------------|--------|---------------|------------|
+ Train [likely-snow-4](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/2ebl5jzc?workspace=user-ivanovitch-silva) | ?      | ? | ?        | ?     |  
+ Test [confused-sun-5](https://wandb.ai/ivanovitch-silva/first_image_classifier/runs/e8bwl5wq?workspace=user-ivanovitch-silva)  | 0.XXXX      | 0.xxxx | 0.xxxx        | 0.Xxxx     |
 
 ## Ethical Considerations
 
-We may be tempted to claim that this dataset contains the only attributes capable of predicting if there is a cat, dog or a panda in an image. However, this is not the case. The dataset is composed of 3,000 images, which is a small number of images to train a model. The dataset is also composed of images with different resolutions, which may lead to a model that is not robust to different image sizes.
+O dataset é composto por 3000 imagens de diferentes animais como cachorro, gatos e pandas. Desta forma os atributos fornecidos ao modelo são para classificar este tipo de dado, e sem garantia de funcionar corretamente em imagens de variados tamanhos diferentes do ultilizado no treinamento.
 
 ## Caveats and Recommendations
-It should be noted that the model trained in this project was used only for validation of a complete data pipeline. It is notary that some important issues related to size of images exist, and adequate techniques need to be adopted in order to balance it. Including data augmentation techniques, for example. Other more appropriate models should be used in order to obtain better results such as Convolutional Neural Networks (CNNs).
+FALAR DA DIFERENÇA -- se um foi melhor que o outro -- pq foi assim -- e mostrar a  imagem legal lá e a acuracia
